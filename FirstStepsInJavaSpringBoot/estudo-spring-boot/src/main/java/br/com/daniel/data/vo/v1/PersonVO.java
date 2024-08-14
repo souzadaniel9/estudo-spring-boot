@@ -2,14 +2,25 @@ package br.com.daniel.data.vo.v1;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonPropertyOrder({"id", "first_name", "last_Name", "address", "gender"}) //Define a ordem em que aparece no banco de dados
 public class PersonVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private long id;
+	
+	@JsonProperty("first_name") // Altera o nome do JSON Serialization
 	private String firstName;
+	
+	@JsonProperty("last_Name") // Altera o nome do JSON Serialization
 	private String lastName;
+	
 	private String address;
+	
+//	@JsonIgnore // Oculta do JSON Serialization
 	private String gender;
 
 	public PersonVO() {
