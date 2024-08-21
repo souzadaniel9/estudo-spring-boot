@@ -4,11 +4,16 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class PersonVOV2 implements Serializable {
+import org.springframework.hateoas.RepresentationModel;
+
+import com.github.dozermapper.core.Mapping;
+
+public class PersonVOV2 extends RepresentationModel<PersonVOV2> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private long id;
+	@Mapping("id")
+	private long key;
 	private String firstName;
 	private String lastName;
 	private String address;
@@ -19,20 +24,20 @@ public class PersonVOV2 implements Serializable {
 
 	}
 
-	public PersonVOV2(long id, String firstName, String lastName, String address, String gender) {
-		this.id = id;
+	public PersonVOV2(long key, String firstName, String lastName, String address, String gender) {
+		this.key = key;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
 		this.gender = gender;
 	}
 
-	public long getId() {
-		return id;
+	public long getKey() {
+		return key;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setKey(long key) {
+		this.key = key;
 	}
 
 	public String getFirstName() {
@@ -77,7 +82,7 @@ public class PersonVOV2 implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, birthDay, firstName, gender, id, lastName);
+		return Objects.hash(address, birthDay, firstName, gender, key, lastName);
 	}
 
 	@Override
@@ -90,7 +95,7 @@ public class PersonVOV2 implements Serializable {
 			return false;
 		PersonVOV2 other = (PersonVOV2) obj;
 		return Objects.equals(address, other.address) && Objects.equals(birthDay, other.birthDay)
-				&& Objects.equals(firstName, other.firstName) && Objects.equals(gender, other.gender) && id == other.id
+				&& Objects.equals(firstName, other.firstName) && Objects.equals(gender, other.gender) && key == other.key
 				&& Objects.equals(lastName, other.lastName);
 	}
 	
